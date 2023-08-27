@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private Vector2 GetRandomSpawnPosition()
     {
-        float x = Random.Range(spawnArea.rect.min.x, spawnArea.rect.max.x);
+        float x = 0;
         float y = Random.Range(spawnArea.rect.min.y, spawnArea.rect.max.y);
         return new Vector2(x, y);
     }

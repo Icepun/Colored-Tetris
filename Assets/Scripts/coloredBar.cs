@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class coloredBar : MonoBehaviour
 {
-    public float startYPos = 0;
-    private float fallSpeed = 1000;
+    private float fallSpeed = 1;
 
-    private RectTransform rectTransform;
+    private Rigidbody2D rb2D;
 
     public Color[] colors;
 
@@ -16,14 +15,11 @@ public class coloredBar : MonoBehaviour
     {
         int randomIndex = Random.Range(0, colors.Length);
         gameObject.GetComponent<Image>().color = colors[randomIndex];
-        rectTransform = GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0f, startYPos);
-        //InvokeRepeating("Fall", 0f, 1f); // Her saniye düþme iþlevini çaðýr
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
-    private void Fall()
+    private void Update()
     {
-        float newY = rectTransform.anchoredPosition.y - (fallSpeed * Time.deltaTime);
-        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, newY);
+        rb2D.velocity = new Vector2(0f, -fallSpeed); // Düþme hýzýný ayarla
     }
 }

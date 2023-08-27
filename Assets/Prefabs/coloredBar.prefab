@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 900}
-  m_SizeDelta: {x: 800, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6071185316813216292
 CanvasRenderer:
@@ -68,8 +68,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 972a7ac4ffe344cb6b704a35f2a6d631, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 10
 --- !u!114 &2619963548652899879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,16 +92,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startYPos: 0
   colors:
-  - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 1, g: 0, b: 0.82385063, a: 0}
-  - {r: 0.7042122, g: 0, b: 1, a: 0}
-  - {r: 0.11151934, g: 0, b: 1, a: 0}
-  - {r: 0, g: 0.8806343, b: 1, a: 0}
-  - {r: 0, g: 1, b: 0.09169221, a: 0}
-  - {r: 0.9339297, g: 1, b: 0, a: 0}
-  - {r: 0.49056602, g: 0.20447694, b: 0.04396581, a: 0}
-  - {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.82385063, a: 1}
+  - {r: 0.7042122, g: 0, b: 1, a: 1}
+  - {r: 0.11151934, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.8806343, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.09169221, a: 1}
+  - {r: 0.9339297, g: 1, b: 0, a: 1}
+  - {r: 0.49056602, g: 0.20447694, b: 0.04396581, a: 1}
+  - {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
 --- !u!50 &-3424657784731283275
 Rigidbody2D:
   serializedVersion: 4
@@ -114,10 +114,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 0.01
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

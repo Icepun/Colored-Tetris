@@ -193,7 +193,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 0.9915745, b: 0.8820755, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -485,16 +485,16 @@ MonoBehaviour:
   coloredBarPrefab: {fileID: 6071185316813216293, guid: 78dc15090c90c784aa597ef234a8456c, type: 3}
   spawnArea: {fileID: 1744888216}
   colors:
-  - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 1, g: 0, b: 0.8291087, a: 0}
-  - {r: 0.71039295, g: 0, b: 1, a: 0}
-  - {r: 0.074186325, g: 0, b: 1, a: 0}
-  - {r: 0, g: 0.95477676, b: 1, a: 0}
-  - {r: 0.05724919, g: 1, b: 0, a: 0}
-  - {r: 0.98929596, g: 1, b: 0, a: 0}
-  - {r: 0.4811321, g: 0.2701562, b: 0, a: 0}
-  - {r: 0.254717, g: 0.254717, b: 0.254717, a: 0}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.8291087, a: 1}
+  - {r: 0.71039295, g: 0, b: 1, a: 1}
+  - {r: 0.074186325, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.95477676, b: 1, a: 1}
+  - {r: 0.05724919, g: 1, b: 0, a: 1}
+  - {r: 0.98929596, g: 1, b: 0, a: 1}
+  - {r: 0.4811321, g: 0.2701562, b: 0, a: 1}
+  - {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
 --- !u!4 &1117447142
 Transform:
   m_ObjectHideFlags: 0
