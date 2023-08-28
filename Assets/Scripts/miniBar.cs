@@ -11,7 +11,7 @@ public class miniBar : MonoBehaviour
 
     public Color[] colors;
     private int colorIndex = 0; // Mevcut renk index'i
-    private float colorChangeInterval = 2f; // Renk deðiþim aralýðý
+    private float colorChangeInterval = 1f; // Renk deðiþim aralýðý
     private float colorChangeTimer = 0f; // Renk deðiþim zamanlayýcýsý
 
     private bool movingRight = true; // baþlangýçta saða mý hareket etsin?
@@ -26,6 +26,9 @@ public class miniBar : MonoBehaviour
 
         rectTransform.anchoredPosition = new Vector2(0f, -800f);
 
+        // Renkleri rastgele bir þekilde karýþtýr
+        ShuffleColorsArray(colors);
+
         image.color = colors[0];
     }
 
@@ -33,6 +36,17 @@ public class miniBar : MonoBehaviour
     {
         MoveMiniBar();
         ChangeColor();
+    }
+
+    private void ShuffleColorsArray(Color[] array)
+    {
+        for (int i = 0; i < array.Length - 1; i++)
+        {
+            int randomIndex = Random.Range(i, array.Length);
+            Color temp = array[i];
+            array[i] = array[randomIndex];
+            array[randomIndex] = temp;
+        }
     }
 
     private void MoveMiniBar()
@@ -62,9 +76,23 @@ public class miniBar : MonoBehaviour
         colorChangeTimer += Time.deltaTime;
         if (colorChangeTimer >= colorChangeInterval)
         {
-            colorIndex = (colorIndex + 1) % colors.Length;
-            image.color = colors[colorIndex];
+            int newColorIndex = GetNextColorIndex(); // Bir sonraki renk indexini al
+            image.color = colors[newColorIndex];
             colorChangeTimer = 0f;
+            colorIndex = newColorIndex; // Mevcut renk indexini güncelle
         }
+    }
+
+    private int GetNextColorIndex()
+    {
+        int newColorIndex = colorIndex + 1;
+
+        // Eðer yeni renk indexi mevcut renk dizisinin sýnýrlarýný aþarsa, sýfýra dön
+        if (newColorIndex >= colors.Length)
+        {
+            newColorIndex = 0;
+        }
+
+        return newColorIndex;
     }
 }

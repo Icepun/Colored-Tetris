@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6071185316813216293}
   - component: {fileID: 2619963548652899879}
   - component: {fileID: -3424657784731283275}
+  - component: {fileID: 409432047709483867}
   m_Layer: 5
   m_Name: coloredBar
-  m_TagString: Untagged
+  m_TagString: coloredBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,17 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2405e3547be0584084a3f4c864775d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.82385063, a: 1}
-  - {r: 0.7042122, g: 0, b: 1, a: 1}
-  - {r: 0.11151934, g: 0, b: 1, a: 1}
-  - {r: 0, g: 0.8806343, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.09169221, a: 1}
-  - {r: 0.9339297, g: 1, b: 0, a: 1}
-  - {r: 0.49056602, g: 0.20447694, b: 0.04396581, a: 1}
-  - {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
 --- !u!50 &-3424657784731283275
 Rigidbody2D:
   serializedVersion: 4
@@ -118,7 +108,33 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_Interpolate: 2
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!61 &409432047709483867
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071185316813216291}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 750, y: 50}
+  m_EdgeRadius: 0
