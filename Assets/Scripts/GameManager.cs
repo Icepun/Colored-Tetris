@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        scoreText.text = score.ToString();
+
         spawnTimer += Time.deltaTime;
 
         if (spawnTimer >= spawnInterval && endPoints < maxEndPoints + 3)
@@ -77,7 +79,6 @@ public class GameManager : MonoBehaviour
                     if (colorDifference <= 0.1f)
                     {
                         score += 10;
-                        scoreText.text = score.ToString();
                         Destroy(bar.gameObject);
                         spawnedBars.Remove(bar); // Listedeki coloredBar'ý kaldýr
                         break; // Bir eþleþme bulunduðunda döngüden çýk

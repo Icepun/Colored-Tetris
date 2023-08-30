@@ -31,29 +31,29 @@ public class Jokers : MonoBehaviour
     // Diğer methodları da buraya ekleyebilirsiniz
     public void FirstJoker()
     {
-        if (GameManager.score > 1000)
+        if (GameManager.score > 200)
         {
             RemoveBars(2);
-            GameManager.score -= 1000;
+            GameManager.score -= 200;
         }
         
     }
 
     public void SecondJoker()
     {
-        if (GameManager.score > 5000)
+        if (GameManager.score > 400)
         {
             RemoveBars(5);
-            GameManager.score -= 5000;
+            GameManager.score -= 400;
         }
     }
 
     public void ThirdJoker()
     {
-        if (GameManager.score > 10000)
+        if (GameManager.score > 800)
         {
             RemoveBars(10);
-            GameManager.score -= 10000;
+            GameManager.score -= 800;
         }
     }
 }
