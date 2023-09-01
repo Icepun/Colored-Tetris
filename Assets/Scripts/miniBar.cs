@@ -34,8 +34,11 @@ public class miniBar : MonoBehaviour
 
     private void Update()
     {
-        MoveMiniBar();
-        ChangeColor();
+        if (GameManager.isStarted)
+        {
+            MoveMiniBar();
+            ChangeColor();
+        }
     }
 
     private void ShuffleColorsArray(Color[] array)

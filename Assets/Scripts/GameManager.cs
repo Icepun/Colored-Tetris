@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -24,35 +25,75 @@ public class GameManager : MonoBehaviour
     public static int score = 0;
     public static int endPoints = 0;
 
+    public static bool isStarted = false;
+    private bool particleCounter;
+    public GameObject tapToStart;
+    public GameObject jokers;
+    public TextMeshProUGUI yourScore;
+    public GameObject particle;
+
     private void Start()
     {
+        particle.SetActive(false);
+        particleCounter = false;
+        tapToStart.SetActive(true);
+        jokers.SetActive(false);
+        isStarted = false;
         gameOverScreen.SetActive(false);
         endPoints = 0;
+        score = 0;
     }
 
     private void Update()
     {
-        scoreText.text = score.ToString();
-
-        spawnTimer += Time.deltaTime;
-
-        if (spawnTimer >= spawnInterval && endPoints < maxEndPoints + 3)
+        if (isStarted)
         {
-            SpawnColoredBar();
-            spawnTimer = 0f;
-        }
+            scoreText.text = score.ToString();
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            CheckColorsAndScore();
-        }
+            spawnTimer += Time.deltaTime;
 
-        if (endPoints >= maxEndPoints + 3)
-        {
-            gameOverScreen.SetActive(true);
-            Time.timeScale = 0;
-            Debug.Log("Game Over");
+            if (spawnTimer >= spawnInterval && endPoints < maxEndPoints + 3)
+            {
+                SpawnColoredBar();
+                spawnTimer = 0f;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                CheckColorsAndScore();
+            }
+
+            if (endPoints >= maxEndPoints + 3)
+            {
+                gameOverScreen.SetActive(true);
+                jokers.SetActive(false);
+                isStarted = false;
+                yourScore.text = "Your Score: " + score.ToString();
+                Debug.Log("Game Over");
+            }
+
+            //if (particleCounter)
+            //{
+            //    float particleTime = 1;
+            //    particleTime -= Time.deltaTime;
+            //    if (particleTime < 0)
+            //    {
+            //        particleCounter = false;
+            //    }
+            //}
         }
+    }
+
+    public void GameStart()
+    {
+        isStarted = true;
+        tapToStart.SetActive(false);
+        jokers.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void SpawnColoredBar()
@@ -84,13 +125,16 @@ public class GameManager : MonoBehaviour
                 {
                     PlayBreakSound();
                     score += 10;
+                    particle.SetActive(false);
+                    particle.SetActive(true);
+                    particle.transform.position = bar.gameObject.transform.position;
                     Destroy(bar.gameObject);
                     spawnedBars.Remove(bar);
                     break; 
                 }
                 else
                 {
-                    bar.currentFallSpeed = 20f;
+                    bar.currentFallSpeed = bar.currentFallSpeed * 10f;
                     break; 
                 }
             }
