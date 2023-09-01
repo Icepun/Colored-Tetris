@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class coloredBar : MonoBehaviour
 {
-    private float fallSpeedIncrement = 0.1f; // Hýzýn arttýrýlacaðý miktar
-    private int fallSpeedMultipler; // Hýzýn kaç ile çarpýlacaðýný belirler
-    private float currentFallSpeed; // Baþlangýç hýzý
+    private float fallSpeedIncrement = 0.1f; // Hï¿½zï¿½n arttï¿½rï¿½lacaï¿½ï¿½ miktar
+    private int fallSpeedMultipler; // Hï¿½zï¿½n kaï¿½ ile ï¿½arpï¿½lacaï¿½ï¿½nï¿½ belirler
+    public float currentFallSpeed; // Baï¿½langï¿½ï¿½ hï¿½zï¿½
 
     private Rigidbody2D rb2D;
     private bool isMoving = true;

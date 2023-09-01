@@ -69,22 +69,25 @@ public class GameManager : MonoBehaviour
     {
         foreach (coloredBar bar in spawnedBars)
         {
-            if (bar != null)
+            if (bar != null && !bar.CompareTag("endPoint")) 
             {
-                if (!bar.CompareTag("endPoint")) // E�er endPoint tag'ine sahip de�ilse
+                Color activeColor = bar.GetCurrentColor();
+                Color miniBarColor = minibarObj.GetComponent<Image>().color;
+
+                float colorDifference = CalculateColorDifference(activeColor, miniBarColor);
+
+                if (colorDifference <= 0.1f)
                 {
-                    Color activeColor = bar.GetCurrentColor();
-                    Color miniBarColor = minibarObj.GetComponent<Image>().color;
-
-                    float colorDifference = CalculateColorDifference(activeColor, miniBarColor);
-
-                    if (colorDifference <= 0.1f)
-                    {
-                        score += 10;
-                        Destroy(bar.gameObject);
-                        spawnedBars.Remove(bar); // Listedeki coloredBar'� kald�r
-                        break; // Bir e�le�me bulundu�unda d�ng�den ��k
-                    }
+                    PlayBreakSound();
+                    score += 10;
+                    Destroy(bar.gameObject);
+                    spawnedBars.Remove(bar);
+                    break; 
+                }
+                else
+                {
+                    bar.currentFallSpeed = 10f;
+                    break; 
                 }
             }
         }
@@ -108,6 +111,9 @@ public class GameManager : MonoBehaviour
 
     public void PlayBreakSound()
     {
-
+        if (!breakSound.isPlaying)  // eğer ses çalmıyorsa çalmasını sağlar
+            {
+                breakSound.Play();
+            }
     }
 }
