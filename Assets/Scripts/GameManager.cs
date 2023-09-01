@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Image coloredBarPrefab; // Prefab olarak eklediðiniz coloredBar öðesi
-    public RectTransform spawnArea; // Canvas içinde spawn yapýlacak alan
+    public AudioSource breakSound;
+
+    public Image coloredBarPrefab; // Prefab olarak eklediï¿½iniz coloredBar ï¿½ï¿½esi
+    public RectTransform spawnArea; // Canvas iï¿½inde spawn yapï¿½lacak alan
     public TextMeshProUGUI scoreText;
     public int maxEndPoints;
     public Color[] colors; // Renk array'i
@@ -15,8 +17,8 @@ public class GameManager : MonoBehaviour
     public Image minibarObj;
     private List<coloredBar> spawnedBars = new List<coloredBar>();
 
-    private float spawnInterval = 5f; // Yeni coloredBar'ýn spawn aralýðý
-    private float spawnTimer = 0f; // Zamanlayýcý
+    private float spawnInterval = 5f; // Yeni coloredBar'ï¿½n spawn aralï¿½ï¿½ï¿½
+    private float spawnTimer = 0f; // Zamanlayï¿½cï¿½
 
     public static int score = 0;
     public static int endPoints = 0;
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
 
         newColoredBar.transform.SetParent(spawnArea, false);
 
-        // Yeni coloredBar'ý listeye ekle
+        // Yeni coloredBar'ï¿½ listeye ekle
         spawnedBars.Add(newColoredBar.GetComponent<coloredBar>());
     }
 
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
         {
             if (bar != null)
             {
-                if (!bar.CompareTag("endPoint")) // Eðer endPoint tag'ine sahip deðilse
+                if (!bar.CompareTag("endPoint")) // Eï¿½er endPoint tag'ine sahip deï¿½ilse
                 {
                     Color activeColor = bar.GetCurrentColor();
                     Color miniBarColor = minibarObj.GetComponent<Image>().color;
@@ -80,8 +82,8 @@ public class GameManager : MonoBehaviour
                     {
                         score += 10;
                         Destroy(bar.gameObject);
-                        spawnedBars.Remove(bar); // Listedeki coloredBar'ý kaldýr
-                        break; // Bir eþleþme bulunduðunda döngüden çýk
+                        spawnedBars.Remove(bar); // Listedeki coloredBar'ï¿½ kaldï¿½r
+                        break; // Bir eï¿½leï¿½me bulunduï¿½unda dï¿½ngï¿½den ï¿½ï¿½k
                     }
                 }
             }
@@ -102,5 +104,10 @@ public class GameManager : MonoBehaviour
         float x = 0;
         float y = Random.Range(spawnArea.rect.min.y, spawnArea.rect.max.y);
         return new Vector2(x, y);
+    }
+
+    public void PlayBreakSound()
+    {
+
     }
 }

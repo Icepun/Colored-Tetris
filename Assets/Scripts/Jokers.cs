@@ -14,7 +14,7 @@ public class Jokers : MonoBehaviour
             Transform child = spawnPoint.transform.GetChild(i);
 
             // Eğer child objesi "coloredBar" tag'ine sahipse, yok edelim
-            if (child.CompareTag("coloredBar"))
+            if (true)
             {
                 Destroy(child.gameObject);
                 barsDestroyed++;
