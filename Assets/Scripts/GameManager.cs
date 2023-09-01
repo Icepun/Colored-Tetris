@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public  GameObject gameOverScreen;
     public AudioSource breakSound;
 
     public Image coloredBarPrefab; // Prefab olarak ekledi�iniz coloredBar ��esi
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        gameOverScreen.SetActive(false);
         endPoints = 0;
     }
 
@@ -47,7 +49,9 @@ public class GameManager : MonoBehaviour
 
         if (endPoints >= maxEndPoints + 3)
         {
+            gameOverScreen.SetActive(true);
             Time.timeScale = 0;
+            Debug.Log("Game Over");
         }
     }
 
@@ -86,7 +90,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    bar.currentFallSpeed = 10f;
+                    bar.currentFallSpeed = 20f;
                     break; 
                 }
             }
