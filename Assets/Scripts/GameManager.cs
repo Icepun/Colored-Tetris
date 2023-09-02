@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public Image coloredBarPrefab; // Prefab olarak ekledi�iniz coloredBar ��esi
     public RectTransform spawnArea; // Canvas i�inde spawn yap�lacak alan
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI jokerText;
+    public TextMeshProUGUI highScoreText;
     public int maxEndPoints;
     public Color[] colors; // Renk array'i
 
@@ -23,25 +25,37 @@ public class GameManager : MonoBehaviour
     private float spawnTimer = 0f; // Zamanlay�c�
 
     public static int score = 0;
+    public static int jokerScore = 0;
+    public static int highScore = 0;
     public static int endPoints = 0;
 
     public static bool isStarted = false;
-    private bool particleCounter;
+    //private bool particleCounter;
     public GameObject tapToStart;
     public GameObject jokers;
     public TextMeshProUGUI yourScore;
     public GameObject particle;
+    public GameObject newHighScore;
+
+    public Color joker1Color;
+    public Color joker2Color;
+    public Color joker3Color;
+    public Color joker4Color;
 
     private void Start()
     {
         particle.SetActive(false);
-        particleCounter = false;
+        //particleCounter = false;
         tapToStart.SetActive(true);
         jokers.SetActive(false);
         isStarted = false;
+        newHighScore.SetActive(false);
         gameOverScreen.SetActive(false);
         endPoints = 0;
         score = 0;
+        jokerScore = PlayerPrefs.GetInt("jokerScore");
+        highScore = PlayerPrefs.GetInt("highScore");
+        highScoreText.text = highScore.ToString();
     }
 
     private void Update()
@@ -49,6 +63,12 @@ public class GameManager : MonoBehaviour
         if (isStarted)
         {
             scoreText.text = score.ToString();
+            jokerText.text = jokerScore.ToString();
+
+            if (score > highScore)
+            {
+                scoreText.color = Color.yellow;
+            }
 
             spawnTimer += Time.deltaTime;
 
@@ -70,6 +90,13 @@ public class GameManager : MonoBehaviour
                 isStarted = false;
                 yourScore.text = "Your Score: " + score.ToString();
                 Debug.Log("Game Over");
+                
+                if (score >= highScore)
+                {
+                    newHighScore.SetActive(true);
+                    highScore = score;
+                    PlayerPrefs.SetInt("highScore", highScore);
+                }
             }
 
             //if (particleCounter)
@@ -81,6 +108,12 @@ public class GameManager : MonoBehaviour
             //        particleCounter = false;
             //    }
             //}
+
+            if (jokerScore < 50) jokerText.color = Color.black;
+            else if (jokerScore >= 50 && jokerScore < 100) jokerText.color = joker1Color;
+            else if (jokerScore >= 100 && jokerScore < 150) jokerText.color = joker2Color;
+            else if (jokerScore >= 150 && jokerScore < 200) jokerText.color = joker3Color;
+            else if (jokerScore >= 200) jokerText.color = joker4Color;
         }
     }
 
@@ -125,6 +158,9 @@ public class GameManager : MonoBehaviour
                 {
                     PlayBreakSound();
                     score += 10;
+                    jokerScore += 10;
+                    PlayerPrefs.SetInt("jokerScore", jokerScore);
+
                     particle.SetActive(false);
                     particle.SetActive(true);
                     particle.transform.position = bar.gameObject.transform.position;

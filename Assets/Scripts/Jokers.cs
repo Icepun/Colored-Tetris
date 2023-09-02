@@ -1,3 +1,4 @@
+using System.Net;
 using UnityEngine;
 
 public class Jokers : MonoBehaviour
@@ -31,29 +32,47 @@ public class Jokers : MonoBehaviour
     // Diğer methodları da buraya ekleyebilirsiniz
     public void FirstJoker()
     {
-        if (GameManager.score > 200)
+        if (GameManager.jokerScore >= 50)
         {
             RemoveBars(2);
-            GameManager.score -= 200;
+            GameManager.endPoints -= 2;
+            if (GameManager.endPoints < 0) GameManager.endPoints = 0;
+
+            GameManager.jokerScore -= 50;
         }
         
     }
 
     public void SecondJoker()
     {
-        if (GameManager.score > 400)
+        if (GameManager.jokerScore >= 100)
         {
             RemoveBars(5);
-            GameManager.score -= 400;
+            GameManager.endPoints -= 5;
+            if (GameManager.endPoints < 0) GameManager.endPoints = 0;
+            GameManager.jokerScore -= 100;
         }
     }
 
     public void ThirdJoker()
     {
-        if (GameManager.score > 800)
+        if (GameManager.jokerScore >= 150)
         {
             RemoveBars(10);
-            GameManager.score -= 800;
+            GameManager.endPoints -= 10;
+            if (GameManager.endPoints < 0) GameManager.endPoints = 0;
+            GameManager.jokerScore -= 150;
+        }
+    }
+
+    public void FourthJoker()
+    {
+        if (GameManager.jokerScore >= 200)
+        {
+            RemoveBars(15);
+            GameManager.endPoints -= 15;
+            if (GameManager.endPoints < 0) GameManager.endPoints = 0;
+            GameManager.jokerScore -= 200;
         }
     }
 }
