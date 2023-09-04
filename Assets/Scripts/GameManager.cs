@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI yourScore;
     public GameObject particle;
     public GameObject newHighScore;
+    public GameObject bgColorChange;
 
     public Color joker1Color;
     public Color joker2Color;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        bgColorChange.SetActive(false);
         particle.SetActive(false);
         //particleCounter = false;
         tapToStart.SetActive(true);
@@ -119,6 +121,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        bgColorChange.SetActive(true);
         isStarted = true;
         tapToStart.SetActive(false);
         jokers.SetActive(true);
@@ -170,6 +173,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    bar.gameObject.tag = "endPoint";
                     bar.currentFallSpeed = bar.currentFallSpeed * 10f;
                     break; 
                 }

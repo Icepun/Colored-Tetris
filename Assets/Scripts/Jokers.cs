@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class Jokers : MonoBehaviour
 {
+    public AudioSource jokerSound;
     public GameObject spawnPoint; // Bu, Inspector'da atayabileceğiniz spawnPoint nesnesidir.
 
     public void RemoveBars(int howManyBars)
     {
         int barsDestroyed = 0;
+        jokerSound.Play();
 
         // SpawnPoint'in tüm child nesnelerini döngüye alalım
         for (int i = 0; i < spawnPoint.transform.childCount; i++)
