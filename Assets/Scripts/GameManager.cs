@@ -1,9 +1,13 @@
+using GoogleMobileAds.Api;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Voodoo.Utils;
+using GoogleMobileAds;
+using GoogleMobileAds.Api;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +25,7 @@ public class GameManager : MonoBehaviour
     public Image minibarObj;
     private List<coloredBar> spawnedBars = new List<coloredBar>();
 
-    private float spawnInterval = 5f; // Yeni coloredBar'�n spawn aral���
+    private float spawnInterval = 3f; // Yeni coloredBar'�n spawn aral���
     private float spawnTimer = 0f; // Zamanlay�c�
 
     public static int score = 0;
@@ -30,7 +34,6 @@ public class GameManager : MonoBehaviour
     public static int endPoints = 0;
 
     public static bool isStarted = false;
-    //private bool particleCounter;
     public GameObject tapToStart;
     public GameObject jokers;
     public TextMeshProUGUI yourScore;
@@ -43,11 +46,16 @@ public class GameManager : MonoBehaviour
     public Color joker3Color;
     public Color joker4Color;
 
+    public InterstitialAD interstitial;
+
     private void Start()
     {
+        MobileAds.Initialize((InitializationStatus initStatus) =>
+        {
+            interstitial.LoadInterstitialAd();
+        });
         bgColorChange.SetActive(false);
         particle.SetActive(false);
-        //particleCounter = false;
         tapToStart.SetActive(true);
         jokers.SetActive(false);
         isStarted = false;
@@ -91,6 +99,7 @@ public class GameManager : MonoBehaviour
                 jokers.SetActive(false);
                 isStarted = false;
                 yourScore.text = "Your Score: " + score.ToString();
+                Vibrations.Haptic(HapticTypes.MediumImpact);
                 Debug.Log("Game Over");
                 
                 if (score >= highScore)
@@ -100,16 +109,6 @@ public class GameManager : MonoBehaviour
                     PlayerPrefs.SetInt("highScore", highScore);
                 }
             }
-
-            //if (particleCounter)
-            //{
-            //    float particleTime = 1;
-            //    particleTime -= Time.deltaTime;
-            //    if (particleTime < 0)
-            //    {
-            //        particleCounter = false;
-            //    }
-            //}
 
             if (jokerScore < 50) jokerText.color = Color.black;
             else if (jokerScore >= 50 && jokerScore < 100) jokerText.color = joker1Color;
@@ -121,10 +120,16 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        ShowInterstitial();
         bgColorChange.SetActive(true);
         isStarted = true;
         tapToStart.SetActive(false);
         jokers.SetActive(true);
+    }
+
+    public void ShowInterstitial()
+    {
+        interstitial.ShowAd();
     }
 
     public void Restart()
@@ -160,6 +165,7 @@ public class GameManager : MonoBehaviour
                 if (colorDifference <= 0.1f)
                 {
                     PlayBreakSound();
+                    Vibrations.Haptic(HapticTypes.LightImpact);
                     score += 10;
                     jokerScore += 10;
                     PlayerPrefs.SetInt("jokerScore", jokerScore);
@@ -174,7 +180,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     bar.gameObject.tag = "endPoint";
-                    bar.currentFallSpeed = bar.currentFallSpeed * 10f;
+                    bar.currentFallSpeed = bar.currentFallSpeed * 8f;
                     break; 
                 }
             }

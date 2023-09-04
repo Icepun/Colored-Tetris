@@ -1,5 +1,6 @@
 using System.Net;
 using UnityEngine;
+using Voodoo.Utils;
 
 public class Jokers : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Jokers : MonoBehaviour
     {
         int barsDestroyed = 0;
         jokerSound.Play();
+        Vibrations.Haptic(HapticTypes.MediumImpact);
 
         // SpawnPoint'in tüm child nesnelerini döngüye alalım
         for (int i = 0; i < spawnPoint.transform.childCount; i++)
