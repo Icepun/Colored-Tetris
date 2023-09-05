@@ -2142,9 +2142,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1043019927}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
-        m_MethodName: TogglePause
+      - m_Target: {fileID: 1117447143}
+        m_TargetAssemblyTypeName: ExitConfirmation, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1117447143}
+        m_TargetAssemblyTypeName: ExitConfirmation, Assembly-CSharp
+        m_MethodName: PauseButtonUIOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2855,8 +2867,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.505, y: -62.000004}
-  m_SizeDelta: {x: 538.33, y: 142.69}
+  m_AnchoredPosition: {x: -1.51, y: -4.03}
+  m_SizeDelta: {x: 582.65, y: 1233.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1014128280
 MonoBehaviour:
@@ -2902,9 +2914,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1043019927}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
-        m_MethodName: TogglePause
+      - m_Target: {fileID: 1117447143}
+        m_TargetAssemblyTypeName: ExitConfirmation, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1117447143}
+        m_TargetAssemblyTypeName: ExitConfirmation, Assembly-CSharp
+        m_MethodName: PauseButtonUIOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3063,6 +3087,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PausedUI: {fileID: 831902980}
+  toggleObjects:
+  - {fileID: 745030143}
+  - {fileID: 1744888215}
+  - {fileID: 1949842438}
+  - {fileID: 1290028707}
+  - {fileID: 1971039568}
+  - {fileID: 1760134219}
+  - {fileID: 1876932447}
+  - {fileID: 1093915069}
+  - {fileID: 1093915069}
 --- !u!1 &1076734234
 GameObject:
   m_ObjectHideFlags: 0
@@ -3498,6 +3532,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d0cad31b90d4beaae5e644cb38bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PausedUI: {fileID: 831902980}
+  toggleObjects:
+  - {fileID: 1949842438}
+  - {fileID: 1290028707}
+  - {fileID: 1971039568}
+  - {fileID: 1760134219}
+  - {fileID: 1876932447}
+  - {fileID: 1093915069}
+  - {fileID: 745030143}
+  - {fileID: 1744888215}
   exitConfirmationUI: {fileID: 988329572}
 --- !u!1 &1187778102
 GameObject:
