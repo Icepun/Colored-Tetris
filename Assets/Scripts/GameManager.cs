@@ -25,13 +25,15 @@ public class GameManager : MonoBehaviour
     public Image minibarObj;
     private List<coloredBar> spawnedBars = new List<coloredBar>();
 
-    private float spawnInterval = 3f; // Yeni coloredBar'�n spawn aral���
+    private float spawnInterval = 6f; // Yeni coloredBar'�n spawn aral���
     private float spawnTimer = 0f; // Zamanlay�c�
 
     public static int score = 0;
     public static int jokerScore = 0;
     public static int highScore = 0;
     public static int endPoints = 0;
+
+    public GameObject clickDetection;
 
     public static bool isStarted = false;
     public GameObject tapToStart;
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
         {
             interstitial.LoadInterstitialAd();
         });
+        clickDetection.SetActive(false);
         bgColorChange.SetActive(false);
         particle.SetActive(false);
         tapToStart.SetActive(true);
@@ -88,10 +91,10 @@ public class GameManager : MonoBehaviour
                 spawnTimer = 0f;
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                CheckColorsAndScore();
-            }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    CheckColorsAndScore();
+            //}
 
             if (endPoints >= maxEndPoints + 3)
             {
@@ -100,8 +103,9 @@ public class GameManager : MonoBehaviour
                 isStarted = false;
                 yourScore.text = "Your Score: " + score.ToString();
                 Vibrations.Haptic(HapticTypes.MediumImpact);
+                PlayerPrefs.SetInt("jokerScore", jokerScore);
                 Debug.Log("Game Over");
-                
+
                 if (score >= highScore)
                 {
                     newHighScore.SetActive(true);
@@ -115,12 +119,18 @@ public class GameManager : MonoBehaviour
             else if (jokerScore >= 100 && jokerScore < 150) jokerText.color = joker2Color;
             else if (jokerScore >= 150 && jokerScore < 200) jokerText.color = joker3Color;
             else if (jokerScore >= 200) jokerText.color = joker4Color;
+
+            if (score >= 50 && score < 100) spawnInterval = 5;
+            else if (score >= 100 && score < 150) spawnInterval = 4;
+            else if (score >= 150 && score < 200) spawnInterval = 3;
+            else if (score >= 200) spawnInterval = 2;
         }
     }
 
     public void GameStart()
     {
         ShowInterstitial();
+        clickDetection.SetActive(true);
         bgColorChange.SetActive(true);
         isStarted = true;
         tapToStart.SetActive(false);
@@ -151,7 +161,7 @@ public class GameManager : MonoBehaviour
         spawnedBars.Add(newColoredBar.GetComponent<coloredBar>());
     }
 
-    private void CheckColorsAndScore()
+    public void CheckColorsAndScore()
     {
         foreach (coloredBar bar in spawnedBars)
         {
@@ -168,7 +178,6 @@ public class GameManager : MonoBehaviour
                     Vibrations.Haptic(HapticTypes.LightImpact);
                     score += 10;
                     jokerScore += 10;
-                    PlayerPrefs.SetInt("jokerScore", jokerScore);
 
                     particle.SetActive(false);
                     particle.SetActive(true);

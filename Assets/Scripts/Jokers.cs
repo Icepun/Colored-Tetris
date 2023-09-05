@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 using Voodoo.Utils;
@@ -13,25 +14,32 @@ public class Jokers : MonoBehaviour
         jokerSound.Play();
         Vibrations.Haptic(HapticTypes.MediumImpact);
 
-        // SpawnPoint'in tüm child nesnelerini döngüye alalım
+        // SpawnPoint'in tüm child nesnelerini toplayalım ve ters sırada döngüye alalım
+        List<Transform> coloredBars = new List<Transform>();
+
         for (int i = 0; i < spawnPoint.transform.childCount; i++)
         {
             Transform child = spawnPoint.transform.GetChild(i);
-
-            // Eğer child objesi "coloredBar" tag'ine sahipse, yok edelim
-            if (true)
+            if (child.CompareTag("endPoint"))
             {
-                Destroy(child.gameObject);
-                barsDestroyed++;
+                coloredBars.Add(child);
+            }
+        }
 
-                // Belirlenen sayıda çubuk yok edildiyse döngüyü sonlandırabiliriz
-                if (barsDestroyed >= howManyBars)
-                {
-                    break;
-                }
+        // Tersten döngü yaparak son girenleri yok edelim
+        for (int i = coloredBars.Count - 1; i >= 0; i--)
+        {
+            Destroy(coloredBars[i].gameObject);
+            barsDestroyed++;
+
+            // Belirlenen sayıda çubuk yok edildiyse döngüyü sonlandırabiliriz
+            if (barsDestroyed >= howManyBars)
+            {
+                break;
             }
         }
     }
+
 
     // Diğer methodları da buraya ekleyebilirsiniz
     public void FirstJoker()
