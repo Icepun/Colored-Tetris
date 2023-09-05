@@ -20,6 +20,7 @@ public class ExitConfirmation : MonoBehaviour
             {
                 ResumeGame();
                 exitConfirmationUI.SetActive(false);
+                PausedUI.SetActive(false);
             }
         }
     }

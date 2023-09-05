@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public GameObject particle;
     public GameObject newHighScore;
     public GameObject bgColorChange;
+    
+    public GameObject PauseBtn; 
 
     public Color joker1Color;
     public Color joker2Color;
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
         isStarted = false;
         newHighScore.SetActive(false);
         gameOverScreen.SetActive(false);
+        PauseBtn.SetActive(false);
         endPoints = 0;
         score = 0;
         jokerScore = PlayerPrefs.GetInt("jokerScore");
@@ -135,6 +138,7 @@ public class GameManager : MonoBehaviour
         isStarted = true;
         tapToStart.SetActive(false);
         jokers.SetActive(true);
+        PauseBtn.SetActive(true);
     }
 
     public void ShowInterstitial()
